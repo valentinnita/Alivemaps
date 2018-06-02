@@ -14,5 +14,6 @@ const con = mysql.createConnection({
 });
 
 module.exports.insert = function (boxid, pres, hum, temp, aqi, callback) {
-	con.query('INSERT INTO smartdata2 VALUES (?, ?, ?, ?, ?)', [boid, pres, hum, temp, aqi], callback)
+	var post = {boxid: boxid, pressure: pres, humidity: temp, temp: temp, aqi: aqi};
+	con.query('INSERT INTO smartdata2 SET ?', post, callback)
 	};

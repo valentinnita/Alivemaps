@@ -11,7 +11,8 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, info) => {
-	let data = msg.toString('utf8', 8);
+	console.log(info.address, data);
+	let data = msg.toString('utf8', 0);
 
 	if (wellKnownHosts.hasOwnProperty(info.address)) {
 		info.address = wellKnownHosts[info.address];
@@ -24,8 +25,6 @@ server.on('message', (msg, info) => {
 	} catch (err) {
 		return console.error("Cannot parse message", data, err);
 	}
-
-	console.log(info.address, data);
 
 	const timestamp = Date.now();
 
